@@ -1,0 +1,46 @@
+@startuml
+
+interface API {
+    + search(query:String)
+    + comprar(id:long)
+    + estaLogueado()
+}
+
+interface LoginAPI {
+    + getLoginUI()
+    + login(user:String, pass:String): String
+    + logout(token:String)
+}
+
+interface StockAPI {
+    + getStock(id: long)
+}
+
+interface RepoArticulos {
+    + buscar(query:String)
+    + getArticulo(id: long)
+}
+
+class Articulo {
+    - id: long
+    - descripcion: String
+    - stock: int
+}
+
+interface FacturacionAPI {
+    + comprar(articulo:Articulo, cantidad:int)
+}
+
+interface BancoAPI {
+    + validarTarjeta(...)
+}
+
+API --> LoginAPI
+API --> StockAPI
+API --> RepoArticulos
+API --> FacturacionAPI
+API --> BancoAPI
+FacturacionAPI "usa" ..> Articulo
+RepoArticulos "articulos" --> Articulo
+
+@enduml
