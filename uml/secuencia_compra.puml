@@ -1,0 +1,34 @@
+@startuml
+
+actor Usuario
+boundary API
+boundary LoginAPI
+entity Repositorio
+boundary StockAPI
+boundary FacturacionAPI
+boundary BancoAPI
+
+Usuario -> API : comprar()
+API -> API : estaLogueado()
+
+alt no esta logueado
+API -> LoginAPI : getLoginUI()
+Usuario <-- LoginAPI: login UI
+Usuario -> LoginAPI : login()
+Usuario <-- LoginAPI : login OK
+end
+
+API -> Repositorio : getArticulo()
+API <-- Repositorio: articulo
+API -> StockAPI : hayStock()
+API <-- StockAPI: hay suficiente stock
+API -> FacturacionAPI : facturar()
+FacturacionAPI -> BancoAPI : validarTransaccion()
+FacturacionAPI <-- BancoAPI : validacion OK
+API <-- FacturacionAPI : facturacion OK
+API -> StockAPI : actualizarStock()
+API <-- StockAPI: actualizacion OK
+Usuario <-- API : compra OK
+
+
+@enduml

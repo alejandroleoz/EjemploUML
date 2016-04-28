@@ -1,24 +1,26 @@
 @startuml
 
 interface API {
-    + search(query:String)
-    + comprar(id:long)
-    + estaLogueado()
+    + buscar(query:String): <<JSON>>
+    + comprar(id:long): bool
+    + estaLogueado(): bool
 }
 
 interface LoginAPI {
-    + getLoginUI()
+    + getLoginUI(): <<html>>
     + login(user:String, pass:String): String
-    + logout(token:String)
+    + logout(token:String): bool
 }
 
 interface StockAPI {
-    + getStock(id: long)
+    + getStock(id: long): int
+    + hayStock(id: long, cantidad:int): bool
+    + actualizarStock(id: long, cantidad: int): bool
 }
 
 interface RepoArticulos {
-    + buscar(query:String)
-    + getArticulo(id: long)
+    + buscar(query:String): Collection<Articulo>
+    + getArticulo(id: long): Articulo
 }
 
 class Articulo {
@@ -28,11 +30,11 @@ class Articulo {
 }
 
 interface FacturacionAPI {
-    + comprar(articulo:Articulo, cantidad:int)
+    + facturar(articulo:Articulo, cantidad:int): bool
 }
 
 interface BancoAPI {
-    + validarTarjeta(...)
+    + validarTransaccion(...): bool
 }
 
 API --> LoginAPI

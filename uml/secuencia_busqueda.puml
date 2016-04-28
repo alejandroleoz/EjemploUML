@@ -1,0 +1,19 @@
+@startuml
+
+actor Usuario
+boundary API
+boundary LoginAPI
+entity Repositorio
+boundary StockAPI
+boundary FacturacionAPI
+boundary BancoAPI
+
+Usuario -> API : buscar()
+API -> Repositorio : buscar()
+API <-- Repositorio : resultadoBusqueda
+API -> StockAPI : dameStock()
+API <-- StockAPI : stock
+Usuario <-- API : resultado busqueda
+
+
+@enduml
