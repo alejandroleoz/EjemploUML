@@ -1,0 +1,17 @@
+@startuml
+
+node LoginServer
+node Banco
+node AppServer {
+    artifact webapp.war {
+            artifact API.jar
+            artifact core.jar
+        }
+}
+
+API.jar -> core.jar
+AppServer ...> LoginServer
+AppServer ...> Banco
+
+
+@enduml
