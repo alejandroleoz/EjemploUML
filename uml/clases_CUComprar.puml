@@ -1,0 +1,27 @@
+@startuml
+
+interface API {
+    + buscar(query:String): <<JSON>>
+}
+
+interface StockAPI {
+    + getStock(id: long): int
+}
+
+interface RepoArticulos {
+    + buscar(query:String): Collection<Articulo>
+}
+
+class Articulo {
+    - id: long
+    - descripcion: String
+    - stock: int
+}
+
+
+API --> StockAPI
+API --> RepoArticulos
+API "utiliza" ..> Articulo
+RepoArticulos "utiliza" ..> Articulo
+
+@enduml

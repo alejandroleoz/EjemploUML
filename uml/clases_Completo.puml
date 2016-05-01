@@ -29,8 +29,11 @@ class Articulo {
     - stock: int
 }
 
+class Usuario {
+}
+
 interface FacturacionAPI {
-    + facturar(articulo:Articulo, cantidad:int): bool
+    + facturar(articulo:Articulo, cantidad:int, user:Usuario): bool
 }
 
 interface BancoAPI {
@@ -42,7 +45,11 @@ API --> StockAPI
 API --> RepoArticulos
 API --> FacturacionAPI
 API --> BancoAPI
-FacturacionAPI "usa" ..> Articulo
-RepoArticulos "articulos" --> Articulo
+RepoArticulos "utiliza" ..> Articulo
+FacturacionAPI "utiliza" ..> Articulo
+FacturacionAPI "utiliza" ..> Usuario
+API "utiliza" ..> Articulo
+API "utiliza" ..> Usuario
+
 
 @enduml

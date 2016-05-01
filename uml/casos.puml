@@ -1,0 +1,6 @@
+@startuml
+
+Usuario --> (Buscar articulo)
+Usuario --> (Comprar articulo)
+
+@enduml

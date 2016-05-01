@@ -1,19 +1,19 @@
 @startuml
 
 actor Usuario
-boundary API
-boundary LoginAPI
-entity Repositorio
-boundary StockAPI
-boundary FacturacionAPI
-boundary BancoAPI
+participant ":API"
+participant ":LoginAPI"
+participant ":Repositorio"
+participant ":StockAPI"
+'participant ":FacturacionAPI"
+'participant ":BancoAPI"
 
-Usuario -> API : buscar()
-API -> Repositorio : buscar()
-API <-- Repositorio : resultadoBusqueda
-API -> StockAPI : dameStock()
-API <-- StockAPI : stock
-Usuario <-- API : resultado busqueda
+Usuario -> ":API" : buscar()
+":API" -> ":Repositorio" : buscar()
+":API" <-- ":Repositorio" : resultadoBusqueda
+":API" -> ":StockAPI" : getStock()
+":API" <-- ":StockAPI" : stock
+Usuario <-- ":API" : resultado busqueda
 
 
 @enduml
