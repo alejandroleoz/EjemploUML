@@ -40,12 +40,12 @@ interface BancoAPI {
     + validarTransaccion(...): bool
 }
 
-API --> LoginAPI
-API --> StockAPI
-API --> RepoArticulos
-API --> FacturacionAPI
-API --> BancoAPI
-RepoArticulos "utiliza" ..> Articulo
+API "conoce" ..> LoginAPI
+API "conoce" ..> StockAPI
+API "conoce" ..> RepoArticulos
+API "conoce" ..> FacturacionAPI
+RepoArticulos "contiene" ..> "0..n    " Articulo
+FacturacionAPI "conoce" ..> BancoAPI
 FacturacionAPI "utiliza" ..> Articulo
 FacturacionAPI "utiliza" ..> Usuario
 API "utiliza" ..> Articulo

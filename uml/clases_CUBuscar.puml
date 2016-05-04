@@ -19,9 +19,9 @@ class Articulo {
 }
 
 
-API --> StockAPI
-API --> RepoArticulos
+API "conoce" ..> StockAPI
+API "conoce" ..> RepoArticulos
 API "utiliza" ..> Articulo
-RepoArticulos "utiliza" ..> Articulo
+RepoArticulos "contiene" ..> "0..n  " Articulo
 
 @enduml
